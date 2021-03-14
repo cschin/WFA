@@ -31,7 +31,7 @@ SUBDIRS=benchmark \
 LIB_WFA=$(FOLDER_BUILD)/libwfa.a
 LIB_WFA_SO=$(FOLDER_BUILD)/libwfa.so
 
-all: CC_FLAGS+=-O3
+all: CC_FLAGS+=-O3 -fPIC -shared
 all: MODE=all
 all: setup
 all: $(SUBDIRS) lib_wfa lib_wfa_so tools
