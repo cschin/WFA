@@ -29,13 +29,12 @@ SUBDIRS=benchmark \
         utils
        
 LIB_WFA=$(FOLDER_BUILD)/libwfa.a
-LIB_WFA_SO=$(FOLDER_BUILD)/libwfa.so
 
 
 all: CC_FLAGS+=-O3 -fPIC
 all: MODE=all
 all: setup
-all: $(SUBDIRS) lib_wfa lib_wfa_so tools
+all: $(SUBDIRS) lib_wfa tools
 
 debug: MODE=all
 debug: setup
@@ -46,10 +45,6 @@ setup:
 	
 lib_wfa: $(SUBDIRS)
 	$(AR) $(AR_FLAGS) $(LIB_WFA) $(FOLDER_BUILD)/*.o 2> /dev/null
-
-lib_wfa_so: LDFLAGS+=-shared -L.
-lib_wfa_so: $(SUBDIRS)
-	$(CC) $(LDFLAGS)  $(FOLDER_BUILD)/*.o -o $(LIB_WFA_SO) 
 
 clean:
 	rm -rf $(FOLDER_BIN) $(FOLDER_BUILD)
